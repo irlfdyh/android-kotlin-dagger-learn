@@ -31,8 +31,4 @@ open class MyApplication : Application() {
         // pass the applicationContext what will be used as Context in the graph
         DaggerAppComponent.factory().create(applicationContext)
     }
-
-    open val userManager by lazy {
-        UserManager(SharedPreferencesStorage(this))
-    }
 }
