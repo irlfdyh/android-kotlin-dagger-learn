@@ -36,7 +36,8 @@ class RegistrationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         // Ask Dagger to inject this dependencies
-        (application as MyApplication).appComponent.inject(this)
+        (application as MyApplication).appComponent
+            .registrationComponent().create().inject(this)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)

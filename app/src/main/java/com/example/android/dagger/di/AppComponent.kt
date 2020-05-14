@@ -3,12 +3,20 @@ package com.example.android.dagger.di
 import android.content.Context
 import com.example.android.dagger.main.MainActivity
 import com.example.android.dagger.registration.RegistrationActivity
+import com.example.android.dagger.registration.RegistrationComponent
+import com.example.android.dagger.registration.enterdetails.EnterDetailsFragment
+import com.example.android.dagger.registration.termsandconditions.TermsAndConditionsFragment
 import dagger.BindsInstance
 import dagger.Component
+import javax.inject.Singleton
 
-// Definition of a Dagger component, that add info from the [StorageModule]
-// to the graph.
-@Component(modules = [StorageModule::class])
+/**
+ * Definition of a Dagger component, that add info from the [StorageModule]
+ * to the graph. And annotate a component with @Singleton, all the classes
+ * will be scoped to its lifetime.
+ */
+@Singleton
+@Component(modules = [StorageModule::class, AppSubComponents::class])
 interface AppComponent {
 
     // Factory to create instances of the AppComponent
@@ -20,6 +28,8 @@ interface AppComponent {
     }
 
     // Classes that can be injected by this component.
-    fun inject(activity: RegistrationActivity)
     fun inject(activity: MainActivity)
+
+    // Expose [RegistrationComponent] factory from the graph.
+    fun registrationComponent(): RegistrationComponent.Factory
 }
