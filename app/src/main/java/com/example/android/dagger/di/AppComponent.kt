@@ -33,10 +33,9 @@ interface AppComponent {
     // Expose [RegistrationComponent] factory from the graph.
     fun registrationComponent(): RegistrationComponent.Factory
     fun loginComponent(): LoginComponent.Factory
-<<<<<<< HEAD
-=======
-    // Expose [UserManager] so that [MainActivity] and [SettingsActivity] cam
+
+    // Expose [UserManager] so that [MainActivity] and [SettingsActivity] can
     // access a particular instance of [UserComponent].
     fun userManager(): UserManager
->>>>>>> with_testing
+
 }

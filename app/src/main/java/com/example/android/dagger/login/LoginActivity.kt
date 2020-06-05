@@ -33,10 +33,7 @@ import javax.inject.Inject
 
 class LoginActivity : AppCompatActivity() {
 
-<<<<<<< HEAD
-=======
     // @Inject annotated fields will be provided by Dagger
->>>>>>> with_testing
     @Inject
     lateinit var loginViewModel: LoginViewModel
 
@@ -44,11 +41,8 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-<<<<<<< HEAD
-=======
         // Creates an instance of Login component by grabbing the factory from the app graph
         // and injects this activity to that Component
->>>>>>> with_testing
         (application as MyApplication).appComponent
             .loginComponent().create().inject(this)
 
