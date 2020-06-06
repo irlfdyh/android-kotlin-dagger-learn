@@ -33,32 +33,33 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var mainViewModel: MainViewModel
 
-    /**
-     * If the User is not registered, RegistrationActivity will be launched,
-     * If the User is not logged in, LoginActivity will be launched,
-     * else carry on with MainActivity
-     */
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
 
-        // Grab userManager from the appComponent to check if the user is logged in or not
-        val userManager = (application as MyApplication).appComponent.userManager()
-        if (!userManager.isUserLoggedIn()) {
-            if (!userManager.isUserRegistered()) {
-                startActivity(Intent(this, RegistrationActivity::class.java))
-                finish()
-            } else {
-                startActivity(Intent(this, LoginActivity::class.java))
-                finish()
-            }
-        } else {
-            setContentView(R.layout.activity_main)
-            // If MainActivity needs to be displayed, we get the UserComponent
-            // from the application graph and gets the Activity injected.
-            userManager.userComponent!!.inject(this)
-            setupViews()
-        }
+        val userManager =
+            (application as MyApplication).appComponent.userManager()
+        userManager.userComponent!!.inject(this)
+
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        setupViews()
+
+//        // Grab userManager from the appComponent to check if the user is logged in or not
+//        val userManager = (application as MyApplication).appComponent.userManager()
+//        if (!userManager.isUserLoggedIn()) {
+//            if (!userManager.isUserRegistered()) {
+//                startActivity(Intent(this, RegistrationActivity::class.java))
+//                finish()
+//            } else {
+//                startActivity(Intent(this, LoginActivity::class.java))
+//                finish()
+//            }
+//        } else {
+//            setContentView(R.layout.activity_main)
+//            // If MainActivity needs to be displayed, we get the UserComponent
+//            // from the application graph and gets the Activity injected.
+//            userManager.userComponent!!.inject(this)
+//        }
     }
 
     /**
