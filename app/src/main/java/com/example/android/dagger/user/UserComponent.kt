@@ -1,7 +1,7 @@
 package com.example.android.dagger.user
 
-import com.example.android.dagger.main.MainActivity
-import com.example.android.dagger.settings.SettingsActivity
+import com.example.android.dagger.ui.main.MainActivity
+import com.example.android.dagger.ui.settings.SettingsActivity
 import dagger.Subcomponent
 
 /**
